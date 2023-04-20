@@ -18,7 +18,8 @@ class DataTransformationConfig:
     """
     A dataclass to define the file path for the preprocessor object.
     """
-    preprocessor_obj_file_path = os.path.join('artifacts', 'preprocessor.pkl')
+    # TODO change this before final upload
+    preprocessor_obj_file_path = os.path.join(r'C:\Users\AkbarLutfullah\Documents\python-projects\mlproject\artifacts', 'preprocessor.pkl')
 
 
 class DataTransformation:
@@ -30,7 +31,7 @@ class DataTransformation:
         self.data_transformation_config = DataTransformationConfig()
 
     @staticmethod
-    def get_data_transformer_object(self):
+    def get_data_transformer_object():
         """
         Creates a ColumnTransformer object responsible for performing the following transformations:
         1. Imputing missing values in numerical features with their median using SimpleImputer.
@@ -108,9 +109,9 @@ class DataTransformation:
 
             logging.info("Obtaining preprocessing object")
 
-            preprocessing_obj = self.get_data_transformer_object()
+            preprocessing_obj = DataTransformation.get_data_transformer_object()
 
-            target_column_name = 'maths_score'
+            target_column_name = 'math_score'
             numerical_columns = ["writing_score", "reading_score"]
 
             input_feature_train_df = train_df.drop(columns=[target_column_name], axis=1)

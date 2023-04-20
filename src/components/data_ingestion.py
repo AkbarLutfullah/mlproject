@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
+from src.components.model_trainer import ModelTrainerConfig, ModelTrainer
 
 
 @dataclass
@@ -42,8 +43,11 @@ class DataIngestion:
         logging.info("Entered the data ingestion method or component")
 
         try:
+            # Modify the relative file path to be relative to the current directory
+            # df = pd.read_csv(data_file_path)
 
-            df = pd.read_csv(r'notebook\data\stud.csv')
+            # TODO change this before final upload
+            df = pd.read_csv(r'C:\Users\AkbarLutfullah\Documents\python-projects\mlproject\notebook\data\stud.csv')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
@@ -72,3 +76,6 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_path=train_data_path, test_path=test_data_path)
+
+    modeltrainer = ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_array=train_arr, test_array=test_arr))
